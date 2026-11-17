@@ -1,13 +1,12 @@
-// karaoke/DAO/ParteDAO.js
+// DAO/ParteDAO.js
 // DAO da tabela "partes": versos e refrões de cada música.
-
 const supabase = require('../../supabaseClient');
 const { Parte } = require('../parte');
 
 class ParteDAO {
 
     // Mapeamento: linha do banco (snake_case) → objeto Parte (camelCase).
-    // É aqui que tempo_espera vira tempoEspera — o player continua funcionando.
+    // É aqui que tempo_espera vira tempoEspera, e o player continua funcionando.
     _paraParte(linha) {
         const parte = new Parte(linha.letra, linha.tempo_espera, linha.tag);
         parte.id = linha.id;
@@ -45,7 +44,7 @@ class ParteDAO {
 
         if (erroUltima) throw new Error('Erro ao consultar partes: ' + erroUltima.message);
 
-        // Música sem partes → a nova é a de ordem 0; senão, a próxima depois da última
+        // Música sem partes → a nova tem ordem 0; senão, a próxima depois da última
         let proximaOrdem = 0;
         if (ultima) {
             proximaOrdem = ultima.ordem + 1;
