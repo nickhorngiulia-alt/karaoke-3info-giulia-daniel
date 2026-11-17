@@ -1,13 +1,11 @@
-// karaoke/DAO/ArtistaDAO.js
-// DAO da tabela "artistas": o único lugar do projeto que sabe
-// como os artistas são guardados no banco.
-
+// DAO/ArtistaDAO.js
+// DAO da tabela "artistas": o único lugar do projeto que sabe como os artistas são guardados.
 const supabase = require('../../supabaseClient');
 const { Artista } = require('../artista');
 
 class ArtistaDAO {
 
-    // Mapeamento: transforma uma LINHA da tabela (objeto simples que veio do banco)
+    // Mapeamento: transforma uma LINHA da tabela (objeto simples vindo do banco)
     // em um OBJETO da classe Artista.
     _paraArtista(linha) {
         return new Artista(linha.nome, linha.id);
@@ -29,7 +27,7 @@ class ArtistaDAO {
         return artistas;
     }
 
-    // Busca um artista pelo id — ou null, se não existir
+    // Busca um artista pelo id (ou null)
     async buscarPorId(id) {
         const { data, error } = await supabase
             .from('artistas')
@@ -43,7 +41,7 @@ class ArtistaDAO {
         return this._paraArtista(data);
     }
 
-    // Busca um artista pelo nome exato — ou null, se não existir
+    // Busca um artista pelo nome exato (ou null)
     async buscarPorNome(nome) {
         const { data, error } = await supabase
             .from('artistas')
@@ -57,7 +55,7 @@ class ArtistaDAO {
         return this._paraArtista(data);
     }
 
-    // Insere um artista novo e retorna o objeto criado (com o id gerado pelo banco)
+    // Insere um artista e devolve o objeto criado (com o id gerado pelo banco)
     async inserir(nome) {
         const { data, error } = await supabase
             .from('artistas')
@@ -71,7 +69,7 @@ class ArtistaDAO {
     }
 
     // Devolve o artista com esse nome; se ainda não existe, cria.
-    // É o que permite a rota continuar recebendo o artista como texto.
+    // É o que permite a API continuar recebendo o artista como texto.
     async buscarOuCriar(nome) {
         const existente = await this.buscarPorNome(nome);
         if (existente) return existente;
@@ -80,5 +78,5 @@ class ArtistaDAO {
     }
 }
 
-// Exporta uma INSTÂNCIA única (Padrão Singleton)
+// Exporta uma INSTÂNCIA única (Singleton)
 module.exports = new ArtistaDAO();
