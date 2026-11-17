@@ -12,9 +12,10 @@
     "verificar-url": "node testes/verificar_url.mjs"
   },
   "dependencies": {
-    "express": "5.2.1",
-    "dotenv": "18.0.3",
-    "@supabase/supabase-js": "2.117.1"
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.1",
+    "dotenv": "^18.0.3",
+    "express": "5.2.1"
   },
   "engines": {
     "node": ">=22"
