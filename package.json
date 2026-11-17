@@ -1,0 +1,22 @@
+{
+  "name": "karaoke-integrador-retomada",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Integrador de Programação III — IFSul Passo Fundo",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "node --test testes/*.test.cjs",
+    "verificar-url": "node testes/verificar_url.mjs"
+  },
+  "dependencies": {
+    "express": "5.2.1",
+    "dotenv": "18.0.3",
+    "@supabase/supabase-js": "2.117.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

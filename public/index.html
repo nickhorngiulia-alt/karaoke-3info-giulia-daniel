@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repertório · Base de retomada</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="catalogo.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <a class="atalho" href="#conteudo">Ir para o conteúdo</a>
+  <header class="cabecalho">
+    <div class="limite">
+      <p class="instituicao">IFSul · Campus Passo Fundo</p>
+      <h1>Repertório</h1>
+      <p>Consulte as músicas, acompanhe as letras e cuide do catálogo.</p>
+      <p class="disciplina">Programação III · Integrador 2026</p>
+    </div>
+  </header>
+  <main id="conteudo" class="limite">
+    <p class="aviso-base">Base de retomada: consulta e player disponíveis; formulários serão integrados nas tarefas.</p>
+    <div class="grade">
+      <section class="painel catalogo" aria-labelledby="titulo-catalogo">
+        <div class="linha-titulo">
+          <h2 id="titulo-catalogo">Catálogo</h2>
+          <button id="atualizar-lista" class="secundario" type="button">Atualizar</button>
+        </div>
+        <p id="estado-lista" class="mensagem" role="status" aria-live="polite">Carregando catálogo…</p>
+        <ul id="lista-musicas" class="lista-musicas" aria-label="Músicas do catálogo"></ul>
+      </section>
+
+      <div class="coluna">
+        <section class="painel" aria-labelledby="titulo-musica">
+          <p class="sobretitulo">Letra em sequência</p>
+          <h2 id="titulo-musica">Selecione uma música</h2>
+          <p id="artista-musica" class="subtitulo">Escolha um item do catálogo para consultar.</p>
+          <p id="estado-detalhe" class="mensagem" role="status" aria-live="polite"></p>
+          <div class="acoes">
+            <button id="tocar" type="button" disabled>Tocar</button>
+            <button id="parar" class="secundario" type="button" disabled>Parar</button>
+          </div>
+          <p class="ajuda">O player exibe as partes da letra em ordem, sem áudio.</p>
+          <div class="letra" aria-live="polite" aria-atomic="true">
+            <p id="parte-atual" class="sobretitulo">Aguardando seleção</p>
+            <p id="letra-atual">A letra aparecerá aqui.</p>
+          </div>
+          <p id="estado-player" class="mensagem" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="painel" aria-labelledby="titulo-formulario">
+          <div class="linha-titulo">
+            <h2 id="titulo-formulario">Cadastro e edição · tarefas</h2>
+            <button id="nova-musica" class="secundario" type="button" disabled>Nova música · pendente</button>
+          </div>
+          <p id="orientacao-formulario" class="ajuda">Integre os controles em admin.js: TODO 1 — cadastro; TODO 2 — edição; TODO 3 — exclusão com confirmação. Os botões permanecem indisponíveis até a integração.</p>
+          <form id="formulario-musica" aria-describedby="orientacao-formulario">
+            <label for="nome">Nome da música</label>
+            <input id="nome" name="nome" type="text" maxlength="200" required>
+            <label for="artista">Artista</label>
+            <input id="artista" name="artista" type="text" maxlength="200" required>
+            <div class="acoes">
+              <button id="salvar-musica" type="submit" disabled>Cadastrar · pendente</button>
+              <button id="excluir-musica" class="perigo" type="button" disabled>Excluir · pendente</button>
+            </div>
+          </form>
+          <p id="estado-formulario" class="mensagem" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="limite rodape">Técnico em Informática · IFSul</footer>
+</body>
+</html>
