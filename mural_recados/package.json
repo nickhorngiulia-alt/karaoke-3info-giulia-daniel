@@ -1,0 +1,11 @@
+{
+  "name": "mural-recados",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Exemplo de CRUD na tela com fetch — Programação III, IFSul Passo Fundo",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": { "start": "node app.js" },
+  "dependencies": { "express": "5.2.1" },
+  "engines": { "node": ">=22" }
+}

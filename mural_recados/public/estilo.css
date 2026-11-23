@@ -1,0 +1,19 @@
+/* estilo.css — visual simples do mural; funciona em tela estreita. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f8; color: #1f2933; }
+main { max-width: 640px; margin: 0 auto; padding: 16px; }
+h1 { color: #1d7a2d; }
+form, section { background: #fff; border: 1px solid #d9e2e8; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+label { display: block; font-weight: 600; margin-bottom: 4px; }
+input { width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #9aa8b2; border-radius: 6px; }
+.acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+button { padding: 10px 14px; font-size: 1rem; border-radius: 6px; border: 1px solid #1d7a2d; background: #2f9e41; color: #fff; cursor: pointer; }
+button[type="button"] { background: #fff; color: #1d7a2d; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 2px; }
+#mensagem { min-height: 1.4em; margin: 12px 0 0; }
+#mensagem.sucesso { color: #1d7a2d; }
+#mensagem.erro { color: #b00020; font-weight: 600; }
+ul { list-style: none; padding: 0; margin: 0; }
+li button { width: 100%; text-align: left; margin-bottom: 6px; background: #fff; color: #1f2933; border-color: #d9e2e8; }
+li.selecionado button { border: 2px solid #1d7a2d; background: #e6f4ed; }
