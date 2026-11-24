@@ -1,5 +1,5 @@
 "use strict";
-
+let idEmEdicao = null;
 // Roteiro: implemente uma tarefa por vez e confira o resultado na interface.
 // catalogo.js já oferece consultarApi(caminho, opcoes), carregarMusicas(),
 // limparSelecao(), mostrarMensagem(id, texto, erro) e definirCatalogoOcupado(bool).
@@ -31,8 +31,35 @@ function apresentarSelecao(evento) {
 // o resultado. Falhas devem mostrar erro, preservar campos e nunca sucesso.
 // Substituir o listener impedirEnvioPendente e habilitar salvar-musica quando
 // a integração estiver pronta. A API e o DAO de apoio já estão disponíveis.
+async function salvarMusica(evento) {
+    evento.preventDefault();
+    const nome = document.querySelector("#nome").value.trim();
+    const artista = document.querySelector("#artista").value.trim();
+    if (!nome || !artista) {
+        mostrarMensagem('estado-formulario', 'Preencha todos os campos.', true);
+        return;
+    }
 
-// TODO 2 — EDIÇÃO: aproveitar apresentarSelecao para guardar o ID em edição,
+    const editando = idEmEdicao !== null;
+    const caminho = editando ? '/api/musicas/' + idEmEdicao : '/api/musicas';
+    definirCatalogoOcupado(true);
+    try {
+        const musica = await consultarApi(caminho, {
+            method: editando ? 'PUT' : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, artista })
+        });
+        limparSelecao();
+        await carregarMusicas();
+        mostrarMensagem('estado-formulario', (editando ? 'Música alterada' : 'Música cadastrada') + ' (id ' + musica.id + ').', false);
+    } catch (erro) {
+        mostrarMensagem('estado-formulario', erro.message, true); 
+    } finally {
+        definirCatalogoOcupado(false);
+    }
+}
+
+// TODO 2 — EDIÇÃO: aproveitar apresentarSeelcao para guardar o ID em edição,
 // preencher os campos e mudar título/botão. Em salvarMusica, selecionar PUT
 // /api/musicas/:id para uma música em edição, com o mesmo JSON. HTTP 200
 // retorna o detalhe atualizado. Criar prepararCadastro para limparSelecao(),
@@ -46,5 +73,5 @@ function apresentarSelecao(evento) {
 // mostrar resultado. Ligar excluir-musica e habilitá-lo apenas com seleção.
 // Cancelar a confirmação não altera dados. Tratar falhas e envio duplicado.
 
-document.getElementById("formulario-musica").addEventListener("submit", impedirEnvioPendente);
+document.getElementById("formulario-musica").addEventListener("submit", salvarMusica);
 document.addEventListener("musica-selecionada", apresentarSelecao);

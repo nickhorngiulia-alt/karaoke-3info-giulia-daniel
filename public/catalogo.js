@@ -40,7 +40,6 @@ async function consultarApi(caminho, opcoes = {}) {
 
 function mostrarMensagem(id, mensagem, erro = false) {
   let elemento = document.getElementById(id);
-  elemento.textContent = mensagem;
   elemento.classList.toggle("erro", erro);
 }
 
